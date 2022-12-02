@@ -15,7 +15,7 @@ const ScheduleMeeting = () => {
 
         <div className="row">
           {/* left */}
-          <div className="col-sm-4">
+          <div className="col-sm-4 col-12">
             <p>Gaurav Garg</p>
             <h3 className="fw-bold mb-0 fs-4">15 Minute Meeting</h3>
 
@@ -42,9 +42,10 @@ const ScheduleMeeting = () => {
           </div>
 
           {/* right */}
-          <div className="col-sm-8">
+          <div className="col-sm-8 col-12">
             <h3 className="fw-bold mb-2 fs-4 ">Enter Details</h3>
             <MeetingForm />
+            <Modal/>
           </div>
         </div>
       </div>
@@ -52,13 +53,13 @@ const ScheduleMeeting = () => {
       <div
         className="modal fade"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog">
           <div className="modal-content">
-            <div className="modal-header">
+            {/* <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
                 Modal title
               </h1>
@@ -68,7 +69,7 @@ const ScheduleMeeting = () => {
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
-            </div>
+            </div> */}
             <div className="modal-body">...</div>
             <div className="modal-footer">
               <button

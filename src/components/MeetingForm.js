@@ -6,21 +6,51 @@ const MeetingForm = () => {
     email: "",
     comment: "",
   });
-  const submit = () => {
-    if (document.getElementById("Email").value == "") {
-      alert("Please Enter Email ID");
+  const [error, setError] = useState({
+    name: "",
+    email: "",
+    comment: "",
+  });
+  const submit = (e) => {
+    console.log(e)
+    if (user.name === "" && user.email === "" && user.comment === "") {
+      setError({
+        name: "Fields are empty",
+      });
       return false;
+    } else {
+      alert("Name:", e);
+      // alert("error");
     }
+    //   setError({
+    //     email: "Please Enter Email ID",
+    //   });
+    //   return false;
+    //   setError({
+    //     name: "Please Enter Name",
+    //   });
+    //   return false;
+    //   setError({
+    //     comment: "Please Enter comment",
+    //   });
+    //   return false;
+    // }
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name);
+    setUser({
+      [name]: value,
+    });
+    // console.log(value);
   };
   return (
     <main>
       <form className="row g-3">
         <div className="mb-3 col-md-6 col-12">
-          <label htmlFor="exampleFormControlInput1" className="form-label fw-bold">
+          <label
+            htmlFor="exampleFormControlInput1"
+            className="form-label fw-bold"
+          >
             Name*
           </label>
           <input
@@ -32,11 +62,15 @@ const MeetingForm = () => {
             value={user.name}
             required
           />
+          {/* <div className="valid-feedback">Looks good!</div> */}
         </div>
         <div className="mb-3 col-md-6 col-12"></div>
 
         <div className="mb-3 col-md-6 col-12">
-          <label htmlFor="exampleFormControlInput1" className="form-label fw-bold">
+          <label
+            htmlFor="exampleFormControlInput1"
+            className="form-label fw-bold"
+          >
             Email address*
           </label>
           <input
@@ -49,6 +83,7 @@ const MeetingForm = () => {
             value={user.email}
             required
           />
+          {/* <div className="valid-feedback">Looks good!</div> */}
         </div>
         <div className="mb-3 col-md-6 col-12"></div>
 
@@ -64,7 +99,10 @@ const MeetingForm = () => {
         <div className="mb-3 col-md-6 col-12"></div>
 
         <div className="mb-3 col-md-6 col-12">
-          <label htmlFor="exampleFormControlTextarea1" className="form-label fw-bold">
+          <label
+            htmlFor="exampleFormControlTextarea1"
+            className="form-label fw-bold"
+          >
             Please share anything that will help prepare for our meeting.
           </label>
           <textarea
@@ -75,6 +113,7 @@ const MeetingForm = () => {
             value={user.comment}
             onChange={handleChange}
           ></textarea>
+          {/* <div className="invalid-feedback">{}</div> */}
         </div>
 
         <div className="col-12">
@@ -82,8 +121,8 @@ const MeetingForm = () => {
             className="btn btn-primary rounded-pill"
             type="submit"
             onClick={submit}
-            // data-bs-toggle="modal"
-            // data-bs-target="#exampleModal"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
           >
             Schedule Event
           </button>
