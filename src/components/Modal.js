@@ -1,17 +1,7 @@
 export const Modal = (props) => {
-  const { target } = props;
+  const { data } = props;
   return (
     <div>
-      {/* <!-- Button trigger modal --> */}
-      {/* <button
-        type="button"
-        className="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        Launch demo modal
-      </button> */}
-
       {/* <!-- Modal --> */}
       <div
         className="modal fade"
@@ -24,7 +14,7 @@ export const Modal = (props) => {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Modal title
+                Confirm
               </h1>
               <button
                 type="button"
@@ -33,7 +23,14 @@ export const Modal = (props) => {
                 aria-label="Close"
               ></button>
             </div>
-            <div className="modal-body">...</div>
+            {/* main content */}
+            <div className="modal-body">
+              <h6>Please confirm your details:</h6>
+              <strong>Name:</strong> {data.name} <br />
+              <strong>Email:</strong> {data.email} <br />
+              <strong>Comments:</strong> {data.comment} <br />
+            </div>
+
             <div className="modal-footer">
               <button
                 type="button"
@@ -42,8 +39,8 @@ export const Modal = (props) => {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary">
-                Save changes
+              <button type="button" className="btn btn-primary" data-bs-dismiss="modal">
+                Confirm
               </button>
             </div>
           </div>

@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { Modal } from "./Modal";
 
 const MeetingForm = () => {
+  const [flag, setFlag] = useState(false);
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -11,17 +13,19 @@ const MeetingForm = () => {
     email: "",
     comment: "",
   });
-  const submit = (e) => {
-    console.log(e)
-    if (user.name === "" && user.email === "" && user.comment === "") {
+  const submit = () => {
+    // alert(user.name);
+    if (user.name === "" || user.email === "" || user.comment === "") {
       setError({
         name: "Fields are empty",
       });
       return false;
     } else {
-      alert("Name:", e);
-      // alert("error");
+      // alert("Name:", user.name);
+      setFlag(true);
+      // return <Modal data={user.email}></Modal>;
     }
+
     //   setError({
     //     email: "Please Enter Email ID",
     //   });
@@ -39,13 +43,14 @@ const MeetingForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({
+      ...user,
       [name]: value,
     });
     // console.log(value);
   };
   return (
     <main>
-      <form className="row g-3">
+      <form className="row g-3" id="meet-form">
         <div className="mb-3 col-md-6 col-12">
           <label
             htmlFor="exampleFormControlInput1"
@@ -59,10 +64,10 @@ const MeetingForm = () => {
             placeholder="name"
             name="name"
             onChange={handleChange}
-            value={user.name}
+            value={user.name || ""}
             required
           />
-          {/* <div className="valid-feedback">Looks good!</div> */}
+          {/* <div className="invalid-feedback">Doesn't Look good!</div> */}
         </div>
         <div className="mb-3 col-md-6 col-12"></div>
 
@@ -80,7 +85,7 @@ const MeetingForm = () => {
             name="email"
             placeholder="name@example.com"
             onChange={handleChange}
-            value={user.email}
+            value={user.email || ""}
             required
           />
           {/* <div className="valid-feedback">Looks good!</div> */}
@@ -110,16 +115,18 @@ const MeetingForm = () => {
             id="exampleFormControlTextarea1"
             name="comment"
             rows="3"
-            value={user.comment}
             onChange={handleChange}
+            value={user.comment || ""}
+            // required
           ></textarea>
           {/* <div className="invalid-feedback">{}</div> */}
         </div>
+        <p className="lead text-danger fw-bolder">{error.name}</p>
 
         <div className="col-12">
           <button
+            // type="submit"
             className="btn btn-primary rounded-pill"
-            type="submit"
             onClick={submit}
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
@@ -128,6 +135,7 @@ const MeetingForm = () => {
           </button>
         </div>
       </form>
+      <Modal data={user}></Modal>
     </main>
   );
 };
